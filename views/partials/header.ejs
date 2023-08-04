@@ -1,0 +1,219 @@
+<style>
+  header .navbar-collapse {
+    z-index: 0;
+  }
+  .nav-link {
+    color: #000000;
+  }
+  .nav-link:hover {
+    color: #fe5e00;
+  }
+  header .top-bar {
+    background-color: #fe5e00;
+    height: auto;
+  }
+  header .top-bar h4,
+  header .top-bar h5 {
+    color: white;
+    justify-content: center;
+    vertical-align: center;
+    margin-bottom: 0;
+  }
+
+  header .top-bar a {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    justify-content: center;
+    vertical-align: center;
+    margin-bottom: 0;
+  }
+  header .top-bar .col-6 {
+    align-items: center;
+  }
+
+  header .right-section {
+    width: fit-content;
+    background-color: #fe5e00;
+    color: white;
+    border-radius: 15px;
+  }
+  @media screen and (max-width: 768px) {
+    header .right-section {
+      margin-top: 10px;
+      padding: 8px;
+    }
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  .dropdown-item:hover a {
+    color: #fe5e00;
+  }
+</style>
+<header>
+  <div class="container-fluid top-bar">
+    <div class="container d-lg-block d-none">
+      <div class="row">
+        <div class="col-6"><h4>An Phát Sài Gòn | Đèn LED FSL</h4></div>
+        <div class="col-6 text-end">
+          <h4 class="align-middle">Hotline: 0938.925.533</h4>
+        </div>
+      </div>
+    </div>
+    <div class="container d-lg-none d-block">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5>An Phát Sài Gòn</h5>
+        <h5>0938.925.533</h5>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg sticky-top z-3">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img
+            src="<%= setting.logo %>"
+            alt=""
+            style="width: 100%; aspect-ratio: 3/2; object-fit: contain"
+            class="d-inline-block align-text-top" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul
+            class="navbar-nav nav-tabs me-auto my-2 my-lg-0 navbar-nav-scroll"
+            style="--bs-scroll-height: 300px">
+            <li class="nav-item">
+              <a
+                class="nav-link <%= currentPath === '/' ? 'active' : '' %>"
+                href="/"
+                ><i class="fa fa-home"></i> TRANG CHỦ</a
+              >
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                >SẢN PHẨM</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <% categories.forEach((category) => { %>
+                <li class="dropdown-item">
+                  <a href="/product?category=<%= category.slug %>"
+                    ><%= category.name %></a
+                  >
+                </li>
+                <% }) %>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link <%= currentPath === '/post' ? 'active' : '' %>"
+                href="/post"
+                >TIN TỨC</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link <%= currentPath === '/about' ? 'active' : '' %>"
+                href="/about"
+                >GIỚI THIỆU</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="">QUY ĐỊNH & CHÍNH SÁCH</a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link <%= currentPath === '/contact' ? 'active' : '' %>"
+                href="/contact"
+                >LIÊN HỆ</a
+              >
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Ngôn ngữ</a>
+              </li> -->
+            <!-- check if have user show logout else show Login/Register -->
+            <li class="nav-item" style="margin-right: 30px">
+              <a
+                class="button nav-link position-relative right-section"
+                href="/cart"
+                id="cart-header"
+                ><i class="fa-solid fa-cart-shopping me-1"></i>Giỏ hàng
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                  style="background-color: #fe5e00; border: 3px solid white">
+                  <span id="cart-length"></span>
+                  <span class="visually-hidden">unread messages</span>
+                </span></a
+              >
+            </li>
+            <% if (user) { %> <% if (user.role === 'admin' ||user.role === 'mod'
+            ) { %>
+            <li class="nav-item" style="margin-right: 10px">
+              <a class="button nav-link right-section" href="/admin"
+                ><i class="fa-solid fa-gear me-1"></i>Quản lý</a
+              >
+            </li>
+
+            <% } %> <% if (user.role === 'user') { %>
+            <li class="nav-item" style="margin-right: 10px">
+              <a class="button nav-link right-section" href="/account"
+                ><i class="fa-solid fa-circle-user me-1"></i>Tài khoản</a
+              >
+            </li>
+
+            <% } %>
+
+            <li class="nav-item">
+              <a
+                class="button nav-link right-section"
+                href="#"
+                onclick="logout()"
+                ><i class="fa-solid fa-right-from-bracket me-1"></i>Đăng xuất</a
+              >
+            </li>
+            <% } else { %>
+
+            <li class="nav-item" style="margin-right: 10px">
+              <a class="button nav-link right-section" href="/auth/login"
+                ><i class="fa-solid fa-right-from-bracket me-1"></i>Đăng nhập</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link button right-section" href="/auth/register"
+                ><i class="fa-solid fa-pen-to-square me-1"></i>Đăng ký</a
+              >
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart'))
+  if (cart && cart.length > 0) {
+    let cartLength = $('#cart-length')
+    cartLength.html(cart.length)
+    cartLength.addClass('animate-flicker')
+  } else {
+    document.getElementById('cart-length').innerHTML = 0
+  }
+</script>

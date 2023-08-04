@@ -1,0 +1,22 @@
+<style>
+  .page-about {
+    margin-top: 20px;
+    padding: 20px;
+  }
+</style>
+<div class="container" class="page-about">
+  <div id="page-about"></div>
+</div>
+
+<script>
+  let quillAbout = new Quill('#page-about', {
+    readOnly: true,
+  })
+
+  //call api
+  fetch(`${window.location.origin}/post/index?limit=1&page=1&category=about`)
+    .then((response) => response.json())
+    .then((data) => {
+      quillAbout.setContents(data.data.data[0]?.description)
+    })
+</script>

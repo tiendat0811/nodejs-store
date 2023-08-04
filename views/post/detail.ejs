@@ -1,0 +1,46 @@
+<!-- detail post -->
+<style>
+  .post-detail {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .post-detail-content p {
+    font-size: 18px;
+  }
+
+  .post-detail-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .post-detail-date {
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+</style>
+<div class="container">
+  <div class="row" class="post-detail">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div>
+        <div class="post-detail-title">
+          <h1><%= post.title %></h1>
+        </div>
+        <div class="post-detail-date">
+          <p>Ngày đăng: <%= post.createdDate %></p>
+        </div>
+        <div class="post-detail-content" id="post-detail-content"></div>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+<script>
+  let description = new Quill('#post-detail-content', {
+    readOnly: true,
+  });
+  var content = <%- JSON.stringify(post.description) %>
+  description.setContents(content);
+</script>

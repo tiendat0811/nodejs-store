@@ -1,0 +1,74 @@
+<style>
+  footer .container-fluid {
+    background-color: #ffc19d;
+    padding: 20px 0;
+  }
+  footer .certificate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  footer .certificate img {
+    height: 50px;
+    margin: 0 10px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: #003c96;
+    font-size: larger;
+  }
+
+  .footer-link {
+  }
+</style>
+
+<footer>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Thông tin liên hệ</h4>
+          <p>
+            Địa chỉ: <%= setting?.contact.address %><br />
+            Điện thoại: <%= setting?.contact.phone %><br />
+            Email: <%= setting?.contact.email %>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h4>Liên kết hữu ích</h4>
+
+          <div>
+            <a class="footer-link" href="/">Trang chủ</a><br />
+            <a class="footer-link" href="/about">Về chúng tôi</a><br />
+            <a class="footer-link" href="/">Dịch vụ</a><br />
+            <a class="footer-link" href="/post">Tin tức</a><br />
+            <a class="footer-link" href="/contact">Liên hệ</a><br />
+          </div>
+        </div>
+      </div>
+      <div class="certificate">
+        <img src="/static/images/bocongthuong.png" alt="" />
+        <img src="/static/images/bocongthuong2.png" alt="" />
+      </div>
+      <hr />
+      <p class="text-center">
+        &copy; 2023 Pham Tien Dat. All rights reserved. | Contact:
+        phamtiendat.dev@gmail.com | Phone: +84 903 684 049
+      </p>
+    </div>
+  </div>
+</footer>
+
+<%- include('./contact.ejs') %>

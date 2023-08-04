@@ -1,0 +1,51 @@
+<style>
+  .home-section .slider {
+    width: 100%;
+    height: 100%;
+  }
+  .home-section .category p {
+    /* 1 line */
+    white-space: nowrap;
+  }
+  .home-section .category .list-group a {
+    white-space: nowrap;
+    /* upper case */
+    background-color: #fdede3;
+    text-transform: uppercase;
+  }
+  .home-section .category .list-group a:hover {
+    background-color: #ffbe98;
+  }
+  .home-section .category .list-group a.active {
+    background-color: #fe5e00;
+    border-color: #fdede3;
+  }
+</style>
+<div class="container home-section" id="home-section">
+  <!-- carousel -->
+  <div class="d-flex">
+    <div class="d-md-block d-none category">
+      <div class="list-group">
+        <a
+          class="list-group-item list-group-item-action disabled active"
+          aria-disabled="true">
+          <i class="fa-solid fa-bars me-1"></i>DANH MỤC SẢN PHẨM
+        </a>
+
+        <% categories.forEach((category) => { %>
+        <a
+          href="/product?category=<%= category.slug %>"
+          class="list-group-item list-group-item-action"
+          aria-current="<%= currentPath === category.slug ? 'true' : '' %>">
+          <%= category.name %>
+        </a>
+        <% }) %>
+      </div>
+    </div>
+    <div class="container slider"><%- include('./carousel.ejs') %></div>
+  </div>
+  <!-- end carousel -->
+  <%- include('./product.ejs') %>
+</div>
+
+<script></script>

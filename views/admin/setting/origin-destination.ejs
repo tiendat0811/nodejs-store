@@ -1,0 +1,366 @@
+<style>
+  .setting-originDestination .originDestination-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  #originDestination img {
+    width: 200px;
+    height: 100px;
+    object-fit: cover;
+  }
+</style>
+<div class="container-fluid setting-originDestination">
+  <div class="d-flex justify-content-between">
+    <h4>Quản lý điểm đến phổ biến</h4>
+    <div>
+      <div
+        class="btn btn-primary mb-1"
+        data-bs-toggle="modal"
+        data-bs-target="#createoriginDestination">
+        <i class="fa-sharp fa-solid fa-plus pe-1"></i>
+        Thêm mới
+      </div>
+    </div>
+  </div>
+  <table class="table" id="originDestination">
+    <thead>
+      <tr>
+        <th scope="col">TT</th>
+        <th scope="col">Ảnh</th>
+        <th scope="col">Điểm đi</th>
+        <th scope="col">Điểm đến</th>
+        <th scope="col">Giá</th>
+        <th scope="col">Loại</th>
+        <th scope="col">Ngày bay</th>
+        <th scope="col">Vị trí</th>
+        <th scope="col">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <!-- modal create -->
+  <div
+    class="modal fade"
+    id="createoriginDestination"
+    tabindex="-1"
+    aria-labelledby="createoriginDestination"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-between">
+          <h1 class="modal-title fs-5" id="createoriginDestination">
+            Tạo originDestination mới
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="originDestination-image" class="form-label"
+                >Ảnh</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                id="originDestination-image"
+                accept="image/png, image/jpg, image/jpeg" />
+            </div>
+            <div class="mb-3">
+              <label for="originDestination-name" class="form-label"
+                >Tên originDestination</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="originDestination-name" />
+            </div>
+            <div class="mb-3">
+              <label for="originDestination-position" class="form-label"
+                >Vị trí</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="originDestination-position"
+                value="0" />
+            </div>
+            <div class="mb-3">
+              <label for="originDestination-link" class="form-label"
+                >Đường dẫn</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="originDestination-link" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal">
+            Huỷ
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="createoriginDestination">
+            Xác nhận
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal edit -->
+  <div
+    class="modal fade"
+    id="editoriginDestination"
+    tabindex="-1"
+    aria-labelledby="editoriginDestination"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-between">
+          <h1 class="modal-title fs-5" id="editoriginDestination">
+            Cập nhật thông tin chuyển khoản
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="originDestination-image" class="form-label"
+                >Ảnh</label
+              >
+              <input
+                type="file"
+                class="form-control"
+                id="originDestination-image"
+                accept="image/png, image/jpg, image/jpeg" />
+            </div>
+            <div class="mb-3">
+              <label for="originDestination-name" class="form-label"
+                >Tên originDestination</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="originDestination-name" />
+            </div>
+            <div class="mb-3">
+              <label for="originDestination-position" class="form-label"
+                >Vị trí</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="originDestination-position"
+                value="0" />
+            </div>
+            <div class="mb-3">
+              <label for="originDestination-link" class="form-label"
+                >Đường dẫn</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="originDestination-link" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal">
+            Huỷ
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="editoriginDestination()">
+            Cập nhật
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal delete -->
+  <div
+    class="modal fade"
+    id="deleteoriginDestination"
+    tabindex="-1"
+    aria-labelledby="deleteoriginDestination"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="deleteoriginDestination">
+            Cảnh báo
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Bạn chắc chắn muốn xóa thông tin ngân hàng này?
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal">
+            Huỷ
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="confirmDeleteoriginDestination()">
+            Xác nhận
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var setting = JSON.parse('<%- JSON.stringify(setting) %>')
+  let currentoriginDestination = null
+  $(document).ready(function () {
+    renderoriginDestination()
+
+    $('button#createoriginDestination').on('click', async function () {
+      var body = {
+        name: $('#originDestination-name').val(),
+        position: $('#originDestination-position').val(),
+        link: $('#originDestination-link').val(),
+      }
+      var files = $('#originDestination-image').prop('files')
+      var url = files.length > 0 ? await uploadImage(files) : null
+      if (url != null) {
+        body.image = url
+      }
+      updateoriginDestination({
+        originDestination: [...setting?.originDestination, body],
+      })
+    })
+  })
+
+  function selectEditoriginDestination(index, id) {
+    const originDestination = setting?.originDestination[index]
+    currentoriginDestination = id
+    $('#editoriginDestination #originDestination-name').val(
+      originDestination.name,
+    )
+    $('#editoriginDestination #originDestination-position').val(
+      originDestination.position,
+    )
+    $('#editoriginDestination #originDestination-link').val(
+      originDestination.link,
+    )
+    $('#editoriginDestination').modal('show')
+  }
+  async function editoriginDestination() {
+    let body = {
+      name: $('#editoriginDestination #originDestination-name').val(),
+      position: $('#editoriginDestination #originDestination-position').val(),
+      link: $('#editoriginDestination #originDestination-link').val(),
+    }
+    var files = $('#editoriginDestination #originDestination-image').prop(
+      'files',
+    )
+    var url = files.length > 0 ? await uploadImage(files) : null
+    if (url != null) {
+      body.image = url
+    }
+
+    let neworiginDestination = setting?.originDestination
+    neworiginDestination.forEach((originDestination, index) => {
+      if (originDestination._id == currentoriginDestination) {
+        neworiginDestination[index] = {
+          ...neworiginDestination[index],
+          ...body,
+        }
+      }
+    })
+    updateoriginDestination({
+      originDestination: neworiginDestination,
+    })
+  }
+
+  function deleteoriginDestination(id) {
+    currentoriginDestination = id
+    $('#deleteoriginDestination').modal('show')
+  }
+
+  function confirmDeleteoriginDestination() {
+    let neworiginDestination = setting?.originDestination.filter(
+      (originDestination) => originDestination._id != currentoriginDestination,
+    )
+    updateoriginDestination({
+      originDestination: neworiginDestination,
+    })
+  }
+
+  function renderoriginDestination() {
+    let html = ''
+    setting?.originDestination
+      .sort((a, b) => a.position - b.position)
+      .forEach((item, index) => {
+        html += `
+            <tr>
+            <th scope="row">${index + 1}</th>
+            <td><img src="${item.image}" alt="" /></>
+            <td>${item.from}</td>
+            <td>${item.to}</td>
+            <td>${item.price}</td>
+            <td>${item.type}</td>
+            <td>${item.date}</td>
+            <td>${item.position}</td>
+            <td>
+                <div class="btn btn-primary" onclick="selectEditoriginDestination('${index}', '${
+          item._id
+        }')" >Sửa</div>
+                <div class="btn btn-danger" onclick="deleteoriginDestination('${
+                  item._id
+                }')">Xóa</div>
+            </td>
+            </tr>
+        `
+      })
+
+    $('tbody').append(html)
+  }
+
+  function updateoriginDestination(body) {
+    $.ajax({
+      url: '/admin/setting',
+      type: 'PATCH',
+      data: body,
+      success: function (data) {
+        if (data.status == 'ok') {
+          currentoriginDestination = null
+          $('#createoriginDestination').modal('hide')
+          window.location.reload()
+        } else {
+          alert('Thao tác thất bại')
+        }
+      },
+    })
+  }
+</script>
